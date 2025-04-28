@@ -19,9 +19,17 @@ from django.urls import path
 from django.views.static import serve
 from django.conf import settings
 from django.urls.conf import include
+from django_tus.views import TusUpload
+from chunked_upload.views import (
+    ChunkedUploadView, ChunkedUploadCompleteView
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
-    path("products/",include("fileupload.urls"))
+    path("products/",include("fileupload.urls")),
+    path('tus-upload/', TusUpload.as_view(), name='tus_upload'),
+    path('tus-upload/<uuid:resource_id>', TusUpload.as_view(), name='tus_upload_chunks'),
+    path('chunked-upload/', ChunkedUploadView.as_view(), name='chunked-upload'),
+    path('chunked-upload-complete/', ChunkedUploadCompleteView.as_view(), name='chunked-upload-complete')
 ]

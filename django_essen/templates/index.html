@@ -1,0 +1,15 @@
+<script src="https://unpkg.com/tus-js-client/dist/tus.min.js"></script>
+<input type="file" id="fileInput" multiple />
+<script>
+  const input = document.getElementById('fileInput');
+  input.addEventListener('change', () => {
+    for (const file of input.files) {
+      const upload = new tus.Upload(file, {
+        endpoint: '/files/',
+        retryDelays: [0, 1000, 3000, 5000],
+        metadata: { filename: file.name }
+      });
+      upload.start();
+    }
+  });
+</script>

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_tus',
+    'chunked_upload',
     'fileupload'
 ]
 
@@ -129,3 +131,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # MEDIA Settings
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+
+# TUS Settings
+TUS_UPLOAD_DIR = os.path.join(BASE_DIR, 'tus_upload')
+TUS_DESTINATION_DIR = os.path.join(BASE_DIR, 'media', 'uploads')
+TUS_FILE_NAME_FORMAT = 'increment'  # Other options are: 'random-suffix', 'random', 'keep'
+TUS_EXISTING_FILE = 'error'  #  Other options are: 'overwrite',  'error', 'rename'
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
