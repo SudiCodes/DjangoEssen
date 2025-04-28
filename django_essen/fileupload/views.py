@@ -20,7 +20,7 @@ class FileListView(ListView):
 
 class RegularFileUploadView(FormView):
     template_name = "product/index.html"
-    success_url = "...."
+    success_url   = reverse_lazy("products")
     form_class = RegularFileForm
     
     def get(self, request, *args, **kwargs):

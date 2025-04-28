@@ -2,7 +2,7 @@ from django import forms
 from fileupload.models import RegularFile
 
 
-class RegularFileForm(forms.Form):
+class RegularFileForm(forms.ModelForm):
     file_name = forms.CharField(max_length=255)
     file = forms.FileField()
     image = forms.ImageField()
